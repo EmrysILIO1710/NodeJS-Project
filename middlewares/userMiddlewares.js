@@ -12,6 +12,12 @@ const userMiddleware = async (err, req, res, next) => {
     else if(err === 'ENF'){
         return res.status(403).send("email not found...");
     }
+    else if(err === 'UE'){
+        return res.status(403).send("unauthorized entry...");
+    }
+    else if(err === 'Auth-token-blocker'){
+        return res.status(403).send("invalid authorization...");
+    }
     else{
         return res.status(500).send(err);
     }

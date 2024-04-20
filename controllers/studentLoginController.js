@@ -13,7 +13,7 @@ const studentLoginController = async (req, res, next) => {
       if(check){
         const jwt = student.createJWT();
         console.log(jwt);
-        return res.status(200).send(`welcome, ${student.studentName}`);
+        return res.status(200).send(`welcome, ${student.studentName} \nToken: ${jwt}`);
       }
       else{
         next("WR"); //wrong password

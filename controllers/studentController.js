@@ -8,8 +8,8 @@ const studentController = async (req, res, next) => {
     }
     const student = await Studentbio.findOne({studentEmail});
     if(!student){
-        await Studentbio.create(req.body);
-        const jwt = student.createJWT();
+        const studentData = await Studentbio.create(req.body);
+        const jwt = studentData.createJWT();
         console.log(jwt);
         return res.status(201).send("student added...");
     }
