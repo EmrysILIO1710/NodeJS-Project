@@ -5,6 +5,7 @@ const mongoDB = require("./config/conn");
 const userRouter = require("./routes/userRoutes");
 const profileRouter = require("./routes/profileRoutes");
 const studentRouter = require('./routes/studentRoutes');
+const employeeRouter = require('./routes/employeeRouter');
 const userMiddleware = require('./middlewares/userMiddlewares');
 const authMiddleware = require('./middlewares/authMiddleware');
 
@@ -22,6 +23,7 @@ mongoDB.mongoDBConnection();
 app.use('/api', userRouter);
 app.use('/student', studentRouter);
 app.use('/profile', authMiddleware, profileRouter);
+app.use('/employee', employeeRouter);
 
 //middlewares
 app.use(userMiddleware);

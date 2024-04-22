@@ -1,6 +1,7 @@
+const { EmployeeData } = require("../models/employeeAuthModel");
 const jwt = require("jsonwebtoken");
 
-const authMiddleware = (req, res, next) => {
+const employeeAuthMiddleware = async (req, res, next) => {
   try {
     const authHeader = req.headers.authorization;
     // console.log(authHeader);
@@ -10,12 +11,17 @@ const authMiddleware = (req, res, next) => {
       const token = authHeader.split(" ")[1];
 
       const validate = jwt.verify(token, process.env.JWT_PRIVATE_KEY);
-      console.log(validate);
-      next();
+      email = (validate.email);
+      const emp = await EmployeeData.findOne({email});
+      if(emp.role === 'Admin'){
+        next();
+      } else {
+        next("Auth-token-blocker");
+      }
     }
   } catch (err) {
     next(err);
   }
 };
 
-module.exports = authMiddleware;
+module.exports = employeeAuthMiddleware;
