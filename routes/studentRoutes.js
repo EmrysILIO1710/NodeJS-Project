@@ -8,6 +8,8 @@ router.post("/register", studentRegisterController);
 
 router.post('/login', studentLoginController);
 
+router.post('/upload', upload.single("sampleImage"), imageUploadController);
+
 router.post('/authorization', studentAuthController);
 
 module.exports = router;
