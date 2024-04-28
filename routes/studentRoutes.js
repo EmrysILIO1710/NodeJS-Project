@@ -2,6 +2,8 @@ const express = require("express");
 const studentRegisterController = require('../controllers/studentController');
 const studentLoginController = require('../controllers/studentLoginController');
 const studentAuthController = require('../controllers/studentAuthController');
+const imageUploadController = require('../controllers/imageUploadController');
+const upload = require('../utils/storage');
 const router = express.Router();
 
 router.post("/register", studentRegisterController);
